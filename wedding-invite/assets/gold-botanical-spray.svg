@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="420" viewBox="0 0 240 420" fill="none">
+  <defs>
+    <linearGradient id="sprayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3D1" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="#E5C378" stop-opacity="0.75"/>
+      <stop offset="75%" stop-color="#C5A059" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#8F6822" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+
+  <g stroke="url(#sprayGrad)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Main Curving Stem -->
+    <path d="M10 10 C30 70, 70 120, 95 190 C120 260, 110 330, 80 410" stroke-width="2.2" stroke-opacity="0.85"/>
+    <!-- Secondary Whispering Branch -->
+    <path d="M50 100 C90 120, 140 150, 175 220 C200 270, 190 320, 150 370" stroke-width="1.4" stroke-opacity="0.6"/>
+    <path d="M95 190 C130 190, 170 180, 210 200 C230 210, 235 225, 230 240" stroke-width="1.1" stroke-opacity="0.5"/>
+
+    <!-- Eucalyptus & Floral Leaves (Layered fills and veins) -->
+    <!-- Leaf 1 -->
+    <g transform="translate(20, 40) rotate(25)">
+      <path d="M0 0 C-14 18, -12 36, 0 46 C12 36, 14 18, 0 0 Z" fill="url(#sprayGrad)" fill-opacity="0.3" stroke-width="1"/>
+      <line x1="0" y1="4" x2="0" y2="42" stroke-width="0.7"/>
+    </g>
+
+    <!-- Leaf 2 -->
+    <g transform="translate(38, 75) rotate(-35)">
+      <path d="M0 0 C-16 16, -14 34, 0 42 C14 34, 16 16, 0 0 Z" fill="url(#sprayGrad)" fill-opacity="0.35" stroke-width="1"/>
+      <line x1="0" y1="4" x2="0" y2="38" stroke-width="0.7"/>
+    </g>
+
+    <!-- Leaf 3 -->
+    <g transform="translate(68, 125) rotate(40)">
+      <path d="M0 0 C-18 20, -16 40, 0 52 C16 40, 18 20, 0 0 Z" fill="url(#sprayGrad)" fill-opacity="0.4" stroke-width="1.1"/>
+      <line x1="0" y1="4" x2="0" y2="48" stroke-width="0.8"/>
+    </g>
+
+    <!-- Leaf 4 (on secondary branch) -->
+    <g transform="translate(100, 125) rotate(-20)">
+      <path d="M0 0 C-14 15, -12 30, 0 38 C12 30, 14 15, 0 0 Z" fill="url(#sprayGrad)" fill-opacity="0.3" stroke-width="0.9"/>
+      <line x1="0" y1="3" x2="0" y2="35" stroke-width="0.6"/>
+    </g>
+
+    <!-- Leaf 5 -->
+    <g transform="translate(140, 165) rotate(35)">
+      <path d="M0 0 C-18 20, -15 38, 0 48 C15 38, 18 20, 0 0 Z" fill="url(#sprayGrad)" fill-opacity="0.35" stroke-width="1"/>
+      <line x1="0" y1="4" x2="0" y2="44" stroke-width="0.7"/>
+    </g>
+
+    <!-- Leaf 6 -->
+    <g transform="translate(180, 205) rotate(60)">
+      <path d="M0 0 C-15 16, -13 32, 0 40 C13 32, 15 16, 0 0 Z" fill="url(#sprayGrad)" fill-opacity="0.3" stroke-width="0.9"/>
+      <line x1="0" y1="3" x2="0" y2="37" stroke-width="0.6"/>
+    </g>
+
+    <!-- Leaf 7 (main lower) -->
+    <g transform="translate(98, 220) rotate(-45)">
+      <path d="M0 0 C-20 22, -18 45, 0 58 C18 45, 20 22, 0 0 Z" fill="url(#sprayGrad)" fill-opacity="0.38" stroke-width="1.1"/>
+      <line x1="0" y1="4" x2="0" y2="52" stroke-width="0.8"/>
+    </g>
+
+    <!-- Leaf 8 -->
+    <g transform="translate(112, 275) rotate(30)">
+      <path d="M0 0 C-18 20, -15 40, 0 50 C15 40, 18 20, 0 0 Z" fill="url(#sprayGrad)" fill-opacity="0.32" stroke-width="1"/>
+      <line x1="0" y1="4" x2="0" y2="45" stroke-width="0.7"/>
+    </g>
+
+    <!-- Leaf 9 (branch lower) -->
+    <g transform="translate(185, 270) rotate(-15)">
+      <path d="M0 0 C-16 18, -14 34, 0 44 C14 34, 16 18, 0 0 Z" fill="url(#sprayGrad)" fill-opacity="0.28" stroke-width="0.9"/>
+      <line x1="0" y1="3" x2="0" y2="40" stroke-width="0.6"/>
+    </g>
+
+    <!-- Leaf 10 (lowest) -->
+    <g transform="translate(90, 340) rotate(-35)">
+      <path d="M0 0 C-16 18, -14 34, 0 44 C14 34, 16 18, 0 0 Z" fill="url(#sprayGrad)" fill-opacity="0.25" stroke-width="0.9"/>
+      <line x1="0" y1="3" x2="0" y2="40" stroke-width="0.6"/>
+    </g>
+
+    <!-- Delicate Golden Flower Buds and Seed Pods -->
+    <circle cx="16" cy="18" r="3.5" fill="url(#sprayGrad)" fill-opacity="0.7"/>
+    <circle cx="28" cy="12" r="2.5" fill="url(#sprayGrad)" fill-opacity="0.6"/>
+    <circle cx="8" cy="30" r="2" fill="url(#sprayGrad)" fill-opacity="0.5"/>
+    
+    <circle cx="132" cy="145" r="3" fill="url(#sprayGrad)" fill-opacity="0.6"/>
+    <circle cx="225" cy="225" r="3" fill="url(#sprayGrad)" fill-opacity="0.6"/>
+    <circle cx="235" cy="245" r="2" fill="url(#sprayGrad)" fill-opacity="0.5"/>
+    <circle cx="165" cy="350" r="3.5" fill="url(#sprayGrad)" fill-opacity="0.5"/>
+
+    <!-- Tiny Floating Stardust Sparkles -->
+    <polygon points="120,80 122,85 127,87 122,89 120,94 118,89 113,87 118,85" fill="url(#sprayGrad)" opacity="0.6"/>
+    <polygon points="210,160 212,163 216,164 212,165 210,169 208,165 204,164 208,163" fill="url(#sprayGrad)" opacity="0.5"/>
+    <polygon points="60,260 62,263 66,264 62,265 60,269 58,265 54,264 58,263" fill="url(#sprayGrad)" opacity="0.5"/>
+  </g>
+</svg>

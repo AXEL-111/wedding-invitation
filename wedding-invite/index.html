@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian & Lovely | Wedding Invitation</title>
+    <meta name="description"
+        content="Join Christian and Lovely on Wednesday, December 9, 2026, at Our Lady of Lourdes Parish in Tagaytay, followed by a reception at Fernwood Gardens.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons (Lucide Icons via CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Premium Preloader / Invitation Envelope -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-aura" aria-hidden="true"></div>
+        <div class="envelope-container" id="envelope-container">
+            <div class="envelope">
+                <div class="flap"></div>
+                <div class="pocket"></div>
+                <div class="envelope-address" id="envelope-address">Specially Invited</div>
+                <div class="letter">
+                    <div class="letter-content">
+                        <p class="letter-salutation" id="letter-salutation">Dear Guest,</p>
+                        <p class="letter-text">You are cordially invited to celebrate the wedding of</p>
+                        <h2 class="letter-couple font-serif">Christian & Lovely</h2>
+                        <div class="letter-divider"></div>
+                        <p class="letter-date">Wednesday, December 9, 2026 · 3:00 PM</p>
+                        <p class="letter-venue">Our Lady of Lourdes Parish, Tagaytay</p>
+                    </div>
+                </div>
+                <div class="wax-seal" id="wax-seal">
+                    <div class="seal-inner">C &amp; L</div>
+                </div>
+            </div>
+            <p class="envelope-instruction">Click the seal to open</p>
+        </div>
+    </div>
+
+    <!-- Background Audio -->
+    <audio id="bg-music" loop>
+        <source src="assets/tahanan.mp3" type="audio/mpeg">
+        <source src="https://www.mfiles.co.uk/mp3-downloads/chopin-nocturne-op9-no2.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- Floating Audio Control -->
+    <button id="music-toggle" class="music-toggle hidden" aria-label="Toggle Background Music">
+        <div class="music-waves">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <i data-lucide="music" class="music-icon-static"></i>
+    </button>
+
+    <!-- Global Ambient Background System -->
+    <div class="site-bg-wrapper" aria-hidden="true">
+        <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+        <div class="bg-damask-pattern"></div>
+        <div class="bg-vignette-overlay"></div>
+        <div class="bg-ambient-glow glow-1"></div>
+        <div class="bg-ambient-glow glow-2"></div>
+        <div class="bg-ambient-glow glow-3"></div>
+    </div>
+
+    <!-- Header / Translucent Navigation -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">C &amp; L</a>
+            <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <i data-lucide="menu"></i>
+            </button>
+            <nav class="nav-links" id="nav-links">
+                <a href="#hero" class="nav-link active">Home</a>
+                <a href="#rsvp" class="nav-link">RSVP</a>
+                <a href="#details" class="nav-link">Details</a>
+                <a href="#dress-code" class="nav-link">Dress Code</a>
+                <a href="#accommodations" class="nav-link">Accommodations</a>
+                <a href="#couple-gallery" class="nav-link">Gallery</a>
+                <a href="#gift-guide" class="nav-link">Gift Guide</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <div class="hero-twinkle-stars" aria-hidden="true">
+            <span class="hero-star star-1">✦</span>
+            <span class="hero-star star-2">✧</span>
+            <span class="hero-star star-3">✦</span>
+            <span class="hero-star star-4">✧</span>
+            <span class="hero-star star-5">✦</span>
+        </div>
+        <div class="hero-content">
+            <p class="hero-tagline hero-story-title">Once Upon A Time</p>
+            <p class="hero-story-subtitle">A love story written in the stars was destined to become forever.</p>
+            <h1 class="hero-title">
+                <span>Christian</span>
+                <span class="hero-ampersand">&amp;</span>
+                <span>Lovely</span>
+            </h1>
+            <p class="hero-announce">Joyfully invite you to witness the beginning of their happily ever after.</p>
+
+            <div class="hero-details">
+                <div class="detail-item">
+                    <span class="detail-lbl">DATE</span>
+                    <span class="detail-val">Wednesday, December 9, 2026</span>
+                </div>
+                <div class="detail-divider"></div>
+                <div class="detail-item">
+                    <span class="detail-lbl">VENUE</span>
+                    <span class="detail-val">TAGAYTAY CITY, CAVITE</span>
+                </div>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div id="countdown" class="countdown-container">
+                <div class="countdown-box">
+                    <span id="days" class="countdown-num">00</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-box">
+                    <span id="hours" class="countdown-num">00</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-box">
+                    <span id="minutes" class="countdown-num">00</span>
+                    <span class="countdown-label">Mins</span>
+                </div>
+                <div class="countdown-box">
+                    <span id="seconds" class="countdown-num">00</span>
+                    <span class="countdown-label">Secs</span>
+                </div>
+            </div>
+            <div class="hero-ornament" aria-hidden="true"><span></span><i>✦</i><span></span></div>
+            <p class="hero-quote">“A day filled with love, laughter, and forever.”</p>
+            <a class="btn btn-gold hero-save-date" href="#details">Save the Date</a>
+        </div>
+        <div class="hero-bottom-curve" aria-hidden="true">
+            <svg viewBox="0 0 1440 60" fill="none" preserveAspectRatio="none">
+                <path d="M0,0 C480,55 960,55 1440,0 L1440,60 L0,60 Z" fill="#050f1e" />
+            </svg>
+            <div class="curve-crest"></div>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="rsvp-section">
+        <div class="section-starry-bg" aria-hidden="true"></div>
+        <div class="section-botanical-spray spray-left" aria-hidden="true"></div>
+        <div class="section-botanical-spray spray-right" aria-hidden="true"></div>
+        <div class="container">
+            <div class="section-header scroll-reveal reveal-up">
+                <span class="subtitle">RSVP</span>
+                <h2 class="title">Be Our Guest</h2>
+                <div class="title-divider"></div>
+                <p class="section-desc">Kindly confirm your attendance and join us as we begin our happily ever after.
+                </p>
+            </div>
+
+            <div class="rsvp-container card card-ornate scroll-reveal reveal-up">
+                <div id="rsvp-greeting" class="rsvp-greeting"></div>
+
+                <form id="rsvp-form" class="rsvp-form">
+                    <div class="form-grid" id="rsvp-name-group">
+                        <!-- Full Name (Only visible for generic guests) -->
+                        <div class="form-group col-full">
+                            <label for="rsvp-name">Please Enter Your Name</label>
+                            <input type="text" id="rsvp-name" name="name" placeholder="e.g. Axel Flores" required>
+                        </div>
+                    </div>
+
+                    <div class="rsvp-actions-container">
+                        <button type="button" class="btn btn-gold rsvp-btn-action" id="rsvp-btn-accept"
+                            data-status="accepts">
+                            <i data-lucide="check"></i>
+                            <span>Joyfully Accepts</span>
+                        </button>
+                        <button type="button" class="btn btn-outline rsvp-btn-action" id="rsvp-btn-decline"
+                            data-status="declines">
+                            <i data-lucide="x"></i>
+                            <span>Regretfully Declines</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- RSVP Success Overlay -->
+                <div id="rsvp-success" class="rsvp-success-card hidden">
+                    <div class="success-icon">
+                        <i data-lucide="check-circle-2"></i>
+                    </div>
+                    <h3 id="success-title">Thank You!</h3>
+                    <p id="success-message">Your response has been successfully sent. We are absolutely thrilled to
+                        celebrate this magical day together!</p>
+                    <button id="rsvp-edit-btn" class="btn btn-outline btn-sm">Edit Response</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Details Section -->
+    <section id="details" class="details-section">
+        <div class="details-bg-overlay"></div>
+        <div class="section-botanical-spray spray-left" aria-hidden="true"></div>
+        <div class="section-botanical-spray spray-right" aria-hidden="true"></div>
+        <img class="section-mid-ornament" src="assets/gold-divider.svg" alt="" aria-hidden="true">
+        <div class="container">
+            <div class="section-header scroll-reveal reveal-up">
+                <span class="subtitle">THE CELEBRATION</span>
+                <h2 class="title">Wedding Details</h2>
+                <div class="title-divider"></div>
+            </div>
+
+            <div class="details-grid">
+                <!-- Ceremony Card -->
+                <div class="detail-card card card-ornate scroll-reveal reveal-up">
+                    <div class="card-icon">
+                        <i data-lucide="church"></i>
+                    </div>
+                    <h3>The Ceremony</h3>
+                    <p class="time"><i data-lucide="clock"></i> 3:00 PM</p>
+                    <p class="location">
+                        <i data-lucide="map-pin"></i>
+                        <strong>Our Lady of Lourdes Parish Tagaytay</strong><br>
+                        Nasugbu Highway, Silang Junction North,<br>Brgy. Silang Crossing West, Tagaytay City
+                    </p>
+                    <p class="description">Join us as we exchange vows and rings in a holy covenant ceremony.</p>
+
+                    <!-- Map Embed Container -->
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps?q=Our%20Lady%20of%20Lourdes%20Parish%2C%20Nasugbu%20Highway%2C%20Silang%20Crossing%20West%2C%20Tagaytay&output=embed"
+                            width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <a href="https://www.google.com/maps/search/?api=1&query=Our+Lady+of+Lourdes+Parish+Tagaytay"
+                        target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                        <i data-lucide="map"></i> Open in Google Maps
+                    </a>
+                </div>
+
+                <!-- Reception Card -->
+                <div class="detail-card card card-ornate scroll-reveal reveal-up">
+                    <div class="card-icon">
+                        <i data-lucide="wine"></i>
+                    </div>
+                    <h3>The Reception</h3>
+                    <p class="time"><i data-lucide="clock"></i> Reception to follow</p>
+                    <p class="location">
+                        <i data-lucide="map-pin"></i>
+                        <strong>Fernwood Gardens Tagaytay</strong><br>
+                        Neogan, Tagaytay City
+                    </p>
+                    <p class="description">The reception will follow the ceremony. Join us for dinner and a joyful
+                        celebration.</p>
+
+                    <!-- Map Embed Container -->
+                    <div class="map-container">
+                        <iframe
+                            src="https://www.google.com/maps?q=Fernwood%20Gardens%20Tagaytay%2C%20Neogan%2C%20Tagaytay%20City&output=embed"
+                            width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <div class="calendar-btn-group">
+                        <a href="https://www.google.com/maps/search/?api=1&query=Fernwood+Gardens+Tagaytay+Neogan"
+                            target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+                            <i data-lucide="map"></i> Open in Google Maps
+                        </a>
+                        <button class="btn btn-outline btn-sm dropdown-trigger" id="calendar-dropdown-btn">
+                            <i data-lucide="calendar-plus"></i> Add to Calendar
+                        </button>
+                        <div class="dropdown-menu" id="calendar-dropdown">
+                            <a href="#" id="cal-google">Google Calendar</a>
+                            <a href="#" id="cal-ical">iCal (Apple)</a>
+                            <a href="#" id="cal-outlook">Outlook</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dress Code Section -->
+    <section id="dress-code" class="dress-code-section">
+        <div class="section-starry-bg" aria-hidden="true"></div>
+        <div class="container">
+            <div class="section-header scroll-reveal reveal-up">
+                <span class="subtitle">ATTIRE</span>
+                <h2 class="title">Dress Code</h2>
+                <div class="title-divider"></div>
+                <p class="section-desc">We kindly request formal attire. Shades of blue are encouraged for a coordinated
+                    celebration.</p>
+            </div>
+
+            <div class="dress-code-card card card-ornate scroll-reveal reveal-up">
+                <div class="dress-code-content">
+                    <div class="dress-code-text">
+                        <h4>Formal Attire</h4>
+                        <p>Gentlemen are invited to wear a formal suit in a shade of blue.</p>
+                        <p>Ladies are invited to wear a formal dress or gown in a shade of blue.</p>
+                    </div>
+
+                    <div class="color-palette-container">
+                        <h5>Suggested Attire Colors</h5>
+                        <div class="color-palette-group">
+                            <h6>Gentlemen</h6>
+                            <div class="color-palette" aria-label="Suggested colors for gentlemen">
+                                <span class="color-swatch" title="Black" aria-label="Black"
+                                    style="--swatch-color:#111111"></span>
+                                <span class="color-swatch" title="Deep navy" aria-label="Deep navy"
+                                    style="--swatch-color:#123eaa"></span>
+                                <span class="color-swatch" title="Royal blue" aria-label="Royal blue"
+                                    style="--swatch-color:#1d55b8"></span>
+                                <span class="color-swatch" title="Blue" aria-label="Blue"
+                                    style="--swatch-color:#3c70b2"></span>
+                                <span class="color-swatch" title="Slate blue" aria-label="Slate blue"
+                                    style="--swatch-color:#7897b8"></span>
+                                <span class="color-swatch" title="Powder blue" aria-label="Powder blue"
+                                    style="--swatch-color:#a9c9e9"></span>
+                                <span class="color-swatch" title="Teal blue" aria-label="Teal blue"
+                                    style="--swatch-color:#287b98"></span>
+                                <span class="color-swatch" title="Periwinkle blue" aria-label="Periwinkle blue"
+                                    style="--swatch-color:#7899ce"></span>
+                                <span class="color-swatch" title="Light blue" aria-label="Light blue"
+                                    style="--swatch-color:#a9c5ef"></span>
+                            </div>
+                        </div>
+                        <div class="color-palette-group">
+                            <h6>Ladies</h6>
+                            <div class="color-palette" aria-label="Suggested colors for ladies">
+                                <span class="color-swatch" title="Navy" aria-label="Navy"
+                                    style="--swatch-color:#17118e"></span>
+                                <span class="color-swatch" title="Deep blue" aria-label="Deep blue"
+                                    style="--swatch-color:#1747b0"></span>
+                                <span class="color-swatch" title="Royal blue" aria-label="Royal blue"
+                                    style="--swatch-color:#225bb8"></span>
+                                <span class="color-swatch" title="Blue" aria-label="Blue"
+                                    style="--swatch-color:#3f76b3"></span>
+                                <span class="color-swatch" title="Slate blue" aria-label="Slate blue"
+                                    style="--swatch-color:#7897b8"></span>
+                                <span class="color-swatch" title="Powder blue" aria-label="Powder blue"
+                                    style="--swatch-color:#a9c9e9"></span>
+                                <span class="color-swatch" title="Teal blue" aria-label="Teal blue"
+                                    style="--swatch-color:#287b98"></span>
+                                <span class="color-swatch" title="Periwinkle blue" aria-label="Periwinkle blue"
+                                    style="--swatch-color:#7899ce"></span>
+                                <span class="color-swatch" title="Light blue" aria-label="Light blue"
+                                    style="--swatch-color:#a9c5ef"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dress-guide-select-wrap">
+                    <label for="dress-guide-role">Choose a role to view the attire guide</label>
+                    <select class="dress-guide-select" id="dress-guide-role">
+                        <option value="guests">Guests</option>
+                        <option value="bridesmaids">Bridesmaids</option>
+                        <option value="groomsmen">Groomsmen</option>
+                        <option value="secondary-sponsors-women">Secondary Sponsors — Women</option>
+                        <option value="secondary-sponsors-men">Secondary Sponsors — Men</option>
+                        <option value="parents-of-bride">Parents of the Bride</option>
+                        <option value="parents-of-groom">Parents of the Groom</option>
+                        <option value="ninong-and-ninang">Ninong &amp; Ninang</option>
+                    </select>
+                </div>
+                <div class="dress-guide-gallery" id="dress-guide-gallery" aria-live="polite">
+                    <article class="dress-guide-card">
+                        <div class="dress-guide-image">
+                            <img id="dress-guide-image" alt="Selected role attire example">
+                            <span id="dress-guide-placeholder">Add bridesmaids image</span>
+                        </div>
+                        <h3 id="dress-guide-title">Bridesmaids</h3>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accommodations Section -->
+    <section id="accommodations" class="accommodations-section">
+        <div class="section-botanical-spray spray-left" aria-hidden="true"></div>
+        <div class="section-botanical-spray spray-right" aria-hidden="true"></div>
+        <img class="section-mid-ornament" src="assets/gold-divider.svg" alt="" aria-hidden="true">
+        <div class="container">
+            <div class="section-header scroll-reveal reveal-up">
+                <span class="subtitle">WHERE TO STAY</span>
+                <h2 class="title">Accommodations</h2>
+                <div class="title-divider"></div>
+                <p class="section-desc">The following accommodations near our venues in Tagaytay are recommendations
+                    only. Guests are kindly requested to make their own reservations; lodging is not provided or
+                    arranged by the couple.</p>
+            </div>
+
+            <div class="accommodations-grid">
+                <!-- Hotel 1 -->
+                <div class="accommodation-card card scroll-reveal reveal-up">
+                    <div class="accommodation-img" style="background: linear-gradient(135deg, #0A1D37, #C5A059);">
+                        <i data-lucide="hotel" class="hotel-icon-bg"></i>
+                    </div>
+                    <div class="accommodation-details">
+                        <h4>Taal Vista Hotel</h4>
+                        <p class="distance"><i data-lucide="navigation"></i> 10 mins from Ceremony</p>
+                        <p class="hotel-desc">A historic and luxurious hotel in Tagaytay offering breathtaking views of
+                            the Taal Lake and Volcano.</p>
+                        <a href="https://www.taalvistahotel.com" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-outline btn-sm btn-block">View Hotel</a>
+                    </div>
+                </div>
+
+                <!-- Hotel 2 -->
+                <div class="accommodation-card card scroll-reveal reveal-up">
+                    <div class="accommodation-img" style="background: linear-gradient(135deg, #0A1D37, #C5A059);">
+                        <i data-lucide="hotel" class="hotel-icon-bg"></i>
+                    </div>
+                    <div class="accommodation-details">
+                        <h4>Escala Tagaytay</h4>
+                        <p class="distance"><i data-lucide="navigation"></i> 12 mins from Ceremony</p>
+                        <p class="hotel-desc">A modern boutique hotel famous for its spectacular infinity pool directly
+                            overlooking the Taal Volcano.</p>
+                        <a href="https://www.escalatagaytay.com" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-outline btn-sm btn-block">View Hotel</a>
+                    </div>
+                </div>
+
+                <!-- Hotel 3 -->
+                <div class="accommodation-card card scroll-reveal reveal-up">
+                    <div class="accommodation-img" style="background: linear-gradient(135deg, #0A1D37, #C5A059);">
+                        <i data-lucide="hotel" class="hotel-icon-bg"></i>
+                    </div>
+                    <div class="accommodation-details">
+                        <h4>Fernwood Gardens Suites</h4>
+                        <p class="distance"><i data-lucide="navigation"></i> Located at Reception</p>
+                        <p class="hotel-desc">Intimate and romantic guest rooms located directly inside or adjacent to
+                            the lush Fernwood Gardens property.</p>
+                        <a href="https://fernwoodgardens.com" target="_blank" rel="noopener noreferrer"
+                            class="btn btn-outline btn-sm btn-block">View Hotel</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Couple Gallery Section -->
+    <section id="couple-gallery" class="couple-gallery-section">
+        <div class="section-starry-bg" aria-hidden="true"></div>
+        <div class="container">
+            <div class="section-header scroll-reveal reveal-up">
+                <span class="subtitle">PRE-WEDDING MOMENTS</span>
+                <h2 class="title">Christian &amp; Lovely</h2>
+                <div class="title-divider"></div>
+                <p class="section-desc">Turn the pages of our keepsake pre-wedding album to share in our favorite moments before the big day.</p>
+            </div>
+
+            <div class="couple-gallery-carousel portrait-book scroll-reveal reveal-up" aria-label="Wedding photo album">
+                <!-- Portrait Book Container -->
+                <div class="portrait-book-wrapper" id="gallery-book">
+
+                    <!-- Slim 3D Leather Spine on Left -->
+                    <div class="book-spine-slim" aria-hidden="true">
+                        <span class="spine-rib"></span>
+                        <span class="spine-rib"></span>
+                        <span class="spine-rib"></span>
+                    </div>
+
+                    <!-- Gilded Page Block Edge (Right & Bottom Depth) -->
+                    <div class="book-gilded-edge" aria-hidden="true"></div>
+
+                    <!-- Interactive Portrait Viewport (Single Portrait Leaf Container) -->
+                    <div class="gallery-viewport" id="gallery-viewport" tabindex="0" role="region" aria-label="Wedding photo album. Swipe left or right to turn pages.">
+                        <div class="book-leaves-container" id="book-leaves-container">
+
+                            <!-- LEAF 0: FRONT COVER -->
+                            <div class="book-leaf leaf-cover" data-leaf-index="0" id="leaf-0">
+                                <div class="leaf-face leaf-front album-cover-front">
+                                    <div class="cover-inner-border">
+                                        <div class="cover-filigree top-left" aria-hidden="true"></div>
+                                        <div class="cover-filigree top-right" aria-hidden="true"></div>
+                                        <div class="cover-filigree bottom-left" aria-hidden="true"></div>
+                                        <div class="cover-filigree bottom-right" aria-hidden="true"></div>
+
+                                        <div class="cover-centered-content">
+                                            <div class="cover-header-tag">
+                                                <span class="cover-sparkle-star">&#10022;</span>
+                                                <span class="cover-kicker">PHOTO ALBUM</span>
+                                                <span class="cover-sparkle-star">&#10022;</span>
+                                            </div>
+
+                                            <div class="cover-title-group">
+                                                <h3 class="cover-couple-names">Christian &amp; Lovely</h3>
+                                                <div class="cover-ornament-divider">
+                                                    <span class="divider-line"></span>
+                                                    <span class="divider-diamond">&#9670;</span>
+                                                    <span class="divider-line"></span>
+                                                </div>
+                                                <p class="cover-subtitle">Pre-Wedding Memories</p>
+                                                <p class="cover-meta-date">DECEMBER 09, 2026 &bull; TAGAYTAY</p>
+                                            </div>
+
+                                            <div class="cover-bottom-cta">
+                                                <span class="cover-swipe-pill">Swipe to Open &rarr;</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+
+                                <!-- Inside Front Cover Endpaper -->
+                                <div class="leaf-face leaf-back album-cover-back">
+                                    <div class="endpaper-background" aria-hidden="true"></div>
+                                    <div class="endpaper-plate">
+                                        <div class="endpaper-flourish">&#10084;</div>
+                                        <blockquote class="endpaper-quote">
+                                            &ldquo;Every love story is beautiful, but ours is my favorite.&rdquo;
+                                        </blockquote>
+                                        <div class="endpaper-divider"></div>
+                                        <p class="endpaper-dedication">Captured with love before our big day.</p>
+                                        <span class="endpaper-couple-sign">Christian &amp; Lovely</span>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- LEAF 1: PHOTO 1 -->
+                            <div class="book-leaf leaf-photo" data-leaf-index="1" id="leaf-1">
+                                <div class="leaf-face leaf-front photo-page-front">
+                                    <div class="portrait-photo-frame">
+                                        <img src="assets/couple-gallery/photo-1.jpg" alt="Christian and Lovely, photo 1" loading="lazy" class="portrait-photo" draggable="false">
+                                        <span class="gallery-placeholder">Add photo 1</span>
+                                        <div class="photo-bottom-caption">
+                                            <span class="caption-names">Christian &amp; Lovely</span>
+                                            <span class="caption-pill">1 / 7</span>
+                                        </div>
+                                        <div class="page-curl-corner" aria-hidden="true"></div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                                <div class="leaf-face leaf-back photo-page-back">
+                                    <div class="portrait-paper-reverse">
+                                        <div class="watermark-crest">C &amp; L</div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- LEAF 2: PHOTO 2 -->
+                            <div class="book-leaf leaf-photo" data-leaf-index="2" id="leaf-2">
+                                <div class="leaf-face leaf-front photo-page-front">
+                                    <div class="portrait-photo-frame">
+                                        <img src="assets/couple-gallery/photo-2.jpg" alt="Christian and Lovely, photo 2" loading="lazy" class="portrait-photo" draggable="false">
+                                        <span class="gallery-placeholder">Add photo 2</span>
+                                        <div class="photo-bottom-caption">
+                                            <span class="caption-names">Christian &amp; Lovely</span>
+                                            <span class="caption-pill">2 / 7</span>
+                                        </div>
+                                        <div class="page-curl-corner" aria-hidden="true"></div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                                <div class="leaf-face leaf-back photo-page-back">
+                                    <div class="portrait-paper-reverse">
+                                        <div class="watermark-crest">C &amp; L</div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- LEAF 3: PHOTO 3 -->
+                            <div class="book-leaf leaf-photo" data-leaf-index="3" id="leaf-3">
+                                <div class="leaf-face leaf-front photo-page-front">
+                                    <div class="portrait-photo-frame">
+                                        <img src="assets/couple-gallery/photo-3.jpg" alt="Christian and Lovely, photo 3" loading="lazy" class="portrait-photo" draggable="false">
+                                        <span class="gallery-placeholder">Add photo 3</span>
+                                        <div class="photo-bottom-caption">
+                                            <span class="caption-names">Christian &amp; Lovely</span>
+                                            <span class="caption-pill">3 / 7</span>
+                                        </div>
+                                        <div class="page-curl-corner" aria-hidden="true"></div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                                <div class="leaf-face leaf-back photo-page-back">
+                                    <div class="portrait-paper-reverse">
+                                        <div class="watermark-crest">C &amp; L</div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- LEAF 4: PHOTO 4 -->
+                            <div class="book-leaf leaf-photo" data-leaf-index="4" id="leaf-4">
+                                <div class="leaf-face leaf-front photo-page-front">
+                                    <div class="portrait-photo-frame">
+                                        <img src="assets/couple-gallery/photo-4.jpg" alt="Christian and Lovely, photo 4" loading="lazy" class="portrait-photo" draggable="false">
+                                        <span class="gallery-placeholder">Add photo 4</span>
+                                        <div class="photo-bottom-caption">
+                                            <span class="caption-names">Christian &amp; Lovely</span>
+                                            <span class="caption-pill">4 / 7</span>
+                                        </div>
+                                        <div class="page-curl-corner" aria-hidden="true"></div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                                <div class="leaf-face leaf-back photo-page-back">
+                                    <div class="portrait-paper-reverse">
+                                        <div class="watermark-crest">C &amp; L</div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- LEAF 5: PHOTO 5 -->
+                            <div class="book-leaf leaf-photo" data-leaf-index="5" id="leaf-5">
+                                <div class="leaf-face leaf-front photo-page-front">
+                                    <div class="portrait-photo-frame">
+                                        <img src="assets/couple-gallery/photo-5.jpg" alt="Christian and Lovely, photo 5" loading="lazy" class="portrait-photo" draggable="false">
+                                        <span class="gallery-placeholder">Add photo 5</span>
+                                        <div class="photo-bottom-caption">
+                                            <span class="caption-names">Christian &amp; Lovely</span>
+                                            <span class="caption-pill">5 / 7</span>
+                                        </div>
+                                        <div class="page-curl-corner" aria-hidden="true"></div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                                <div class="leaf-face leaf-back photo-page-back">
+                                    <div class="portrait-paper-reverse">
+                                        <div class="watermark-crest">C &amp; L</div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- LEAF 6: PHOTO 6 -->
+                            <div class="book-leaf leaf-photo" data-leaf-index="6" id="leaf-6">
+                                <div class="leaf-face leaf-front photo-page-front">
+                                    <div class="portrait-photo-frame">
+                                        <img src="assets/couple-gallery/photo-6.jpg" alt="Christian and Lovely, photo 6" loading="lazy" class="portrait-photo" draggable="false">
+                                        <span class="gallery-placeholder">Add photo 6</span>
+                                        <div class="photo-bottom-caption">
+                                            <span class="caption-names">Christian &amp; Lovely</span>
+                                            <span class="caption-pill">6 / 7</span>
+                                        </div>
+                                        <div class="page-curl-corner" aria-hidden="true"></div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                                <div class="leaf-face leaf-back photo-page-back">
+                                    <div class="portrait-paper-reverse">
+                                        <div class="watermark-crest">C &amp; L</div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- LEAF 7: PHOTO 7 -->
+                            <div class="book-leaf leaf-photo" data-leaf-index="7" id="leaf-7">
+                                <div class="leaf-face leaf-front photo-page-front">
+                                    <div class="portrait-photo-frame">
+                                        <img src="assets/couple-gallery/photo-7.jpg" alt="Christian and Lovely, photo 7" loading="lazy" class="portrait-photo" draggable="false">
+                                        <span class="gallery-placeholder">Add photo 7</span>
+                                        <div class="photo-bottom-caption">
+                                            <span class="caption-names">Christian &amp; Lovely</span>
+                                            <span class="caption-pill">7 / 7</span>
+                                        </div>
+                                        <div class="page-curl-corner" aria-hidden="true"></div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                                <div class="leaf-face leaf-back photo-page-back">
+                                    <div class="portrait-paper-reverse">
+                                        <div class="watermark-crest">C &amp; L</div>
+                                    </div>
+                                    <div class="page-shine-overlay" aria-hidden="true"></div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                            <!-- LEAF 8: CLOSING PAGE -->
+                            <div class="book-leaf leaf-closing" data-leaf-index="8" id="leaf-8">
+                                <div class="leaf-face leaf-front closing-page-front">
+                                    <div class="closing-card">
+                                        <div class="closing-crest-icon">&#10022; C &amp; L &#10022;</div>
+                                        <h3 class="closing-heading">To Be Continued...</h3>
+                                        <p class="closing-message">We look forward to creating our next and most beautiful chapter with all of you.</p>
+                                        <div class="cover-ornament-divider">
+                                            <span class="divider-line"></span>
+                                            <span class="divider-diamond">&#9670;</span>
+                                            <span class="divider-line"></span>
+                                        </div>
+                                        <p class="closing-save-date">See you on Wednesday, December 9, 2026</p>
+                                        <button type="button" class="btn btn-outline btn-sm book-restart-btn" id="book-restart-btn">
+                                            <i data-lucide="rotate-ccw"></i> Back to Cover
+                                        </button>
+                                    </div>
+                                    <div class="page-shade-overlay" aria-hidden="true"></div>
+                                </div>
+                            </div>
+
+                        </div> <!-- /book-leaves-container -->
+                    </div> <!-- /gallery-viewport -->
+
+                </div> <!-- /portrait-book-wrapper -->
+
+                <!-- Simple Clean Navigation Indicator -->
+                <div class="book-simple-toolbar">
+                    <div class="book-page-dots" id="book-page-dots" role="tablist" aria-label="Book page indicator"></div>
+                    <p class="gallery-hint" aria-hidden="true">
+                        <i data-lucide="sparkles"></i> Swipe left or right to turn the pages
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gift Guide Section -->
+    <section id="gift-guide" class="gift-guide-section">
+        <div class="section-starry-bg" aria-hidden="true"></div>
+        <div class="container">
+            <div class="section-header scroll-reveal reveal-up">
+                <span class="subtitle">WITH LOVE</span>
+                <h2 class="title">Gift Guide</h2>
+                <div class="title-divider"></div>
+            </div>
+            <div class="gift-guide-card card card-ornate scroll-reveal reveal-up">
+                <p class="gift-guide-copy">Your presence is the greatest gift of all. Should you wish to bless us with a
+                    monetary gift, it would be dearly appreciated as we begin our new chapter together.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-crest" aria-hidden="true"></div>
+            <h2 class="footer-names">Christian &amp; Lovely</h2>
+            <p class="footer-tagline">WE CAN'T WAIT TO CELEBRATE WITH YOU</p>
+            <div class="footer-divider"></div>
+            <p class="copyright">&copy; 2026 Christian &amp; Lovely. Created with love.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Custom JS -->
+    <script src="guests.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

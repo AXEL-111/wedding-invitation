@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="40" viewBox="0 0 400 40" fill="none">
+  <defs>
+    <linearGradient id="divGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#C5A059" stop-opacity="0"/>
+      <stop offset="15%" stop-color="#C5A059" stop-opacity="0.4"/>
+      <stop offset="35%" stop-color="#E5C378" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#FFF3D1" stop-opacity="1"/>
+      <stop offset="65%" stop-color="#E5C378" stop-opacity="0.8"/>
+      <stop offset="85%" stop-color="#C5A059" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#C5A059" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="gemGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8E7"/>
+      <stop offset="50%" stop-color="#E5C378"/>
+      <stop offset="100%" stop-color="#9C742A"/>
+    </linearGradient>
+    <filter id="centerGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Horizontal Tapered Accent Lines -->
+  <line x1="10" y1="20" x2="140" y2="20" stroke="url(#divGrad)" stroke-width="1.2"/>
+  <line x1="260" y1="20" x2="390" y2="20" stroke="url(#divGrad)" stroke-width="1.2"/>
+  <circle cx="140" cy="20" r="1.5" fill="#E5C378"/>
+  <circle cx="260" cy="20" r="1.5" fill="#E5C378"/>
+
+  <!-- Left Symmetrical Laurel & Swirl (mirrored around 200) -->
+  <g stroke="url(#gemGrad)" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Left Swirl Branch -->
+    <path d="M142 20 C155 18, 168 12, 178 14 C184 15, 188 18, 190 20" stroke-width="1.2" fill="none"/>
+    <path d="M142 20 C155 22, 168 28, 178 26 C184 25, 188 22, 190 20" stroke-width="1.2" fill="none"/>
+    <!-- Left Laurel Leaves -->
+    <path d="M158 14 C163 10, 170 10, 172 13 C168 16, 161 16, 158 14 Z" fill="url(#gemGrad)" fill-opacity="0.6"/>
+    <path d="M174 12 C179 8, 186 9, 188 13 C183 15, 178 15, 174 12 Z" fill="url(#gemGrad)" fill-opacity="0.6"/>
+    <path d="M158 26 C163 30, 170 30, 172 27 C168 24, 161 24, 158 26 Z" fill="url(#gemGrad)" fill-opacity="0.6"/>
+    <path d="M174 28 C179 32, 186 31, 188 27 C183 25, 178 25, 174 28 Z" fill="url(#gemGrad)" fill-opacity="0.6"/>
+
+    <!-- Right Symmetrical Branch -->
+    <path d="M258 20 C245 18, 232 12, 222 14 C216 15, 212 18, 210 20" stroke-width="1.2" fill="none"/>
+    <path d="M258 20 C245 22, 232 28, 222 26 C216 25, 212 22, 210 20" stroke-width="1.2" fill="none"/>
+    <!-- Right Laurel Leaves -->
+    <path d="M242 14 C237 10, 230 10, 228 13 C232 16, 239 16, 242 14 Z" fill="url(#gemGrad)" fill-opacity="0.6"/>
+    <path d="M226 12 C221 8, 214 9, 212 13 C217 15, 222 15, 226 12 Z" fill="url(#gemGrad)" fill-opacity="0.6"/>
+    <path d="M242 26 C237 30, 230 30, 228 27 C232 24, 239 24, 242 26 Z" fill="url(#gemGrad)" fill-opacity="0.6"/>
+    <path d="M226 28 C221 32, 214 31, 212 27 C217 25, 222 25, 226 28 Z" fill="url(#gemGrad)" fill-opacity="0.6"/>
+
+    <!-- Flourish Curl Terminals -->
+    <path d="M185 20 C187 17, 192 17, 194 19 C195 21, 192 23, 190 22" stroke-width="1" fill="none"/>
+    <path d="M215 20 C213 17, 208 17, 206 19 C205 21, 208 23, 210 22" stroke-width="1" fill="none"/>
+  </g>
+
+  <!-- Central Celestial Star Crest -->
+  <g transform="translate(200, 20)" filter="url(#centerGlow)">
+    <!-- 8-Point Diamond Star -->
+    <polygon points="0,-14 3.5,-4 14,0 3.5,4 0,14 -3.5,4 -14,0 -3.5,-4" fill="url(#gemGrad)"/>
+    <!-- Inner Radiant Core -->
+    <circle cx="0" cy="0" r="2.5" fill="#FFFDF5"/>
+    <circle cx="-6" cy="0" r="1" fill="#FFFDF5"/>
+    <circle cx="6" cy="0" r="1" fill="#FFFDF5"/>
+  </g>
+</svg>

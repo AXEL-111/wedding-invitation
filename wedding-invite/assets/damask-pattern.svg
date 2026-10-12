@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F2D48E" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#C5A059" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#8F6B26" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Central Damask Motif (at 60, 60) -->
+  <g transform="translate(60, 60)" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Center Jewel -->
+    <path d="M0 -14 L4 -8 L10 -8 L5 -2 L8 6 L0 2 L-8 6 L-5 -2 L-10 -8 L-4 -8 Z" fill="url(#goldGrad)" fill-opacity="0.25"/>
+    <circle cx="0" cy="0" r="2.5" fill="url(#goldGrad)" fill-opacity="0.8"/>
+    
+    <!-- Top Fleur & Petals -->
+    <path d="M0 -15 C3 -25, 12 -30, 0 -42 C-12 -30, -3 -25, 0 -15 Z" fill="url(#goldGrad)" fill-opacity="0.15"/>
+    <path d="M0 -22 C5 -26, 8 -32, 0 -38 C-8 -32, -5 -26, 0 -22 Z" fill="url(#goldGrad)" fill-opacity="0.3"/>
+    
+    <!-- Acanthus Leaf Side Wings -->
+    <path d="M0 -6 C14 -8, 28 -18, 24 -30 C20 -20, 10 -16, 4 -12"/>
+    <path d="M0 -6 C-14 -8, -28 -18, -24 -30 C-20 -20, -10 -16, -4 -12"/>
+    <path d="M0 2 C16 4, 30 -4, 36 -16 C28 -10, 18 -6, 2 -2"/>
+    <path d="M0 2 C-16 4, -30 -4, -36 -16 C-28 -10, -18 -6, -2 -2"/>
+    
+    <!-- Bottom Swirls & Pedestal -->
+    <path d="M0 8 C8 16, 20 22, 16 32 C12 26, 4 22, 0 16 C-4 22, -12 26, -16 32 C-20 22, -8 16, 0 8 Z" fill="url(#goldGrad)" fill-opacity="0.18"/>
+    <path d="M-6 26 C-14 36, -24 38, -28 32 C-30 26, -22 24, -14 26"/>
+    <path d="M6 26 C14 36, 24 38, 28 32 C30 26, 22 24, 14 26"/>
+    
+    <!-- Accent Dots -->
+    <circle cx="0" cy="-44" r="1.5" fill="url(#goldGrad)"/>
+    <circle cx="-18" cy="-14" r="1.2" fill="url(#goldGrad)"/>
+    <circle cx="18" cy="-14" r="1.2" fill="url(#goldGrad)"/>
+    <circle cx="-26" cy="18" r="1" fill="url(#goldGrad)"/>
+    <circle cx="26" cy="18" r="1" fill="url(#goldGrad)"/>
+    <circle cx="0" cy="38" r="1.5" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Corner Quarter-Motifs for Seamless 120x120 Tiling -->
+  <!-- Top-Left (0, 0) -->
+  <g transform="translate(0, 0)" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="0" cy="0" r="2.5" fill="url(#goldGrad)" fill-opacity="0.8"/>
+    <path d="M0 8 C8 16, 20 22, 16 32 C12 26, 4 22, 0 16 Z" fill="url(#goldGrad)" fill-opacity="0.18"/>
+    <path d="M0 2 C16 4, 30 -4, 36 -16 C28 -10, 18 -6, 2 -2"/>
+    <path d="M6 26 C14 36, 24 38, 28 32 C30 26, 22 24, 14 26"/>
+    <circle cx="0" cy="38" r="1.5" fill="url(#goldGrad)"/>
+    <circle cx="26" cy="18" r="1" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Top-Right (120, 0) -->
+  <g transform="translate(120, 0)" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="0" cy="0" r="2.5" fill="url(#goldGrad)" fill-opacity="0.8"/>
+    <path d="M0 8 C-8 16, -20 22, -16 32 C-12 26, -4 22, 0 16 Z" fill="url(#goldGrad)" fill-opacity="0.18"/>
+    <path d="M0 2 C-16 4, -30 -4, -36 -16 C-28 -10, -18 -6, -2 -2"/>
+    <path d="M-6 26 C-14 36, -24 38, -28 32 C-30 26, -22 24, -14 26"/>
+    <circle cx="0" cy="38" r="1.5" fill="url(#goldGrad)"/>
+    <circle cx="-26" cy="18" r="1" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Bottom-Left (0, 120) -->
+  <g transform="translate(0, 120)" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="0" cy="0" r="2.5" fill="url(#goldGrad)" fill-opacity="0.8"/>
+    <path d="M0 -15 C3 -25, 12 -30, 0 -42 Z" fill="url(#goldGrad)" fill-opacity="0.15"/>
+    <path d="M0 -6 C14 -8, 28 -18, 24 -30 C20 -20, 10 -16, 4 -12"/>
+    <circle cx="0" cy="-44" r="1.5" fill="url(#goldGrad)"/>
+    <circle cx="18" cy="-14" r="1.2" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Bottom-Right (120, 120) -->
+  <g transform="translate(120, 120)" fill="none" stroke="url(#goldGrad)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="0" cy="0" r="2.5" fill="url(#goldGrad)" fill-opacity="0.8"/>
+    <path d="M0 -15 C-3 -25, -12 -30, 0 -42 Z" fill="url(#goldGrad)" fill-opacity="0.15"/>
+    <path d="M0 -6 C-14 -8, -28 -18, -24 -30 C-20 -20, -10 -16, -4 -12"/>
+    <circle cx="0" cy="-44" r="1.5" fill="url(#goldGrad)"/>
+    <circle cx="-18" cy="-14" r="1.2" fill="url(#goldGrad)"/>
+  </g>
+
+  <!-- Delicate Connecting Vines & Stardust -->
+  <path d="M60 16 C60 8, 54 4, 46 0" fill="none" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="2 3"/>
+  <path d="M60 16 C60 8, 66 4, 74 0" fill="none" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="2 3"/>
+  <path d="M60 104 C60 112, 54 116, 46 120" fill="none" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="2 3"/>
+  <path d="M60 104 C60 112, 66 116, 74 120" fill="none" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="2 3"/>
+  
+  <path d="M16 60 C8 60, 4 54, 0 46" fill="none" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="2 3"/>
+  <path d="M16 60 C8 60, 4 66, 0 74" fill="none" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="2 3"/>
+  <path d="M104 60 C112 60, 116 54, 120 46" fill="none" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="2 3"/>
+  <path d="M104 60 C112 60, 116 66, 120 74" fill="none" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="2 3"/>
+
+  <!-- Tiny Diamond Stars -->
+  <polygon points="60,2 62,6 66,6 63,9 64,13 60,10 56,13 57,9 54,6 58,6" fill="url(#goldGrad)" opacity="0.6"/>
+  <polygon points="60,118 62,114 66,114 63,111 64,107 60,110 56,107 57,111 54,114 58,114" fill="url(#goldGrad)" opacity="0.6"/>
+  <polygon points="2,60 6,62 6,66 9,63 13,64 10,60 13,56 9,57 6,54 6,58" fill="url(#goldGrad)" opacity="0.6"/>
+  <polygon points="118,60 114,62 114,66 111,63 107,64 110,60 107,56 111,57 114,54 114,58" fill="url(#goldGrad)" opacity="0.6"/>
+</svg>

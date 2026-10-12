@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lovely & Christian | RSVP Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons (Lucide Icons via CDN) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --color-bg-primary: #F8F5EF;
+            --color-bg-secondary: #F0EAE1;
+            --color-primary: #0F2C59;
+            --color-primary-dark: #050F1E;
+            --color-accent: #C5A059;
+            --color-accent-light: #E2D9C8;
+            --color-text-main: #1C2B42;
+            --color-text-muted: #53647C;
+            --color-white: #FFFFFF;
+            --color-success: #2E7D32;
+            --color-danger: #C62828;
+            --color-pending: #757575;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: #e8f0fb;
+            background-image: radial-gradient(circle at 12% 0%, rgba(80, 137, 204, 0.18) 0%, transparent 42%), linear-gradient(135deg, #edf4fc 0%, #dce9f8 100%), url('assets/damask-pattern.svg');
+            background-repeat: repeat;
+            background-size: auto, auto, 140px 140px;
+            color: var(--color-text-main);
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        /* Navbar & Header */
+        header {
+            background: linear-gradient(110deg, #0b2141 0%, #173c69 58%, #245386 100%);
+            color: var(--color-white);
+            padding: 25px 40px;
+            box-shadow: 0 4px 15px rgba(15, 44, 89, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-title h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .header-title h1 span {
+            color: var(--color-accent);
+        }
+
+        .header-title p {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-top: 4px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 6px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-accent {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        .btn-accent:hover {
+            background-color: #B8975A;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: rgba(255, 255, 255, 0.3);
+            color: var(--color-white);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-outline-dark {
+            background-color: transparent;
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .btn-outline-dark:hover {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .btn-danger {
+            background-color: transparent;
+            border-color: var(--color-danger);
+            color: var(--color-danger);
+        }
+
+        .btn-danger:hover {
+            background-color: var(--color-danger);
+            color: var(--color-white);
+        }
+
+        .btn-icon {
+            padding: 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 40px auto 0;
+            padding: 0 24px;
+        }
+
+        /* Stats Row */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background-color: var(--color-white);
+            border-radius: 10px;
+            padding: 24px;
+            border: 1px solid var(--color-accent-light);
+            box-shadow: 0 4px 12px rgba(15, 44, 89, 0.03);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon-total {
+            background-color: rgba(15, 44, 89, 0.08);
+            color: var(--color-primary);
+        }
+
+        .stat-icon-attending {
+            background-color: rgba(46, 125, 50, 0.08);
+            color: var(--color-success);
+        }
+
+        .stat-icon-declined {
+            background-color: rgba(198, 40, 40, 0.08);
+            color: var(--color-danger);
+        }
+
+        .stat-icon-pending {
+            background-color: rgba(117, 117, 117, 0.08);
+            color: var(--color-pending);
+        }
+
+        .stat-details h3 {
+            font-size: 1.8rem;
+            color: var(--color-primary);
+        }
+
+        .stat-details p {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* Controls Area */
+        .controls-card {
+            background-color: var(--color-white);
+            border-radius: 10px;
+            padding: 20px;
+            border: 1px solid var(--color-accent-light);
+            box-shadow: 0 4px 12px rgba(15, 44, 89, 0.03);
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .search-box {
+            position: relative;
+            max-width: 320px;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 12px 16px 12px 42px;
+            border-radius: 6px;
+            border: 1px solid var(--color-accent-light);
+            font-size: 0.9rem;
+            outline: none;
+            color: var(--color-text-main);
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-muted);
+            width: 18px;
+            height: 18px;
+        }
+
+        .filter-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            background-color: var(--color-bg-primary);
+            border: 1px solid var(--color-accent-light);
+            padding: 8px 16px;
+            font-size: 0.8rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--color-text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover {
+            border-color: var(--color-accent);
+            color: var(--color-primary);
+        }
+
+        .filter-btn.active {
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            border-color: var(--color-primary);
+        }
+
+        /* Guest Table */
+        .table-card {
+            background-color: var(--color-white);
+            border-radius: 10px;
+            border: 1px solid var(--color-accent-light);
+            box-shadow: 0 4px 12px rgba(15, 44, 89, 0.03);
+            overflow: hidden;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+            max-height: 600px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--color-bg-secondary);
+            color: var(--color-primary);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 16px 24px;
+            border-bottom: 2px solid var(--color-accent-light);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        td {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--color-bg-secondary);
+            font-size: 0.9rem;
+            color: var(--color-text-main);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover td {
+            background-color: rgba(240, 234, 225, 0.3);
+        }
+
+        /* Status Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-attending {
+            background-color: rgba(46, 125, 50, 0.1);
+            color: var(--color-success);
+        }
+
+        .badge-declined {
+            background-color: rgba(198, 40, 40, 0.1);
+            color: var(--color-danger);
+        }
+
+        .badge-pending {
+            background-color: rgba(117, 117, 117, 0.1);
+            color: var(--color-pending);
+        }
+
+        .date-col {
+            font-size: 0.8rem;
+            color: var(--color-text-muted);
+        }
+
+        .actions-col {
+            display: flex;
+            gap: 5px;
+        }
+
+        .action-btn-green {
+            color: var(--color-success);
+            border-color: rgba(46, 125, 50, 0.3);
+            background: transparent;
+        }
+
+        .action-btn-green:hover {
+            background-color: var(--color-success);
+            color: var(--color-white);
+            border-color: var(--color-success);
+        }
+
+        .action-btn-red {
+            color: var(--color-danger);
+            border-color: rgba(198, 40, 40, 0.3);
+            background: transparent;
+        }
+
+        .action-btn-red:hover {
+            background-color: var(--color-danger);
+            color: var(--color-white);
+            border-color: var(--color-danger);
+        }
+
+        .action-btn-gray {
+            color: var(--color-pending);
+            border-color: rgba(117, 117, 117, 0.3);
+            background: transparent;
+        }
+
+        .action-btn-gray:hover {
+            background-color: var(--color-pending);
+            color: var(--color-white);
+            border-color: var(--color-pending);
+        }
+
+        .link-cell {
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .link-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background-color: rgba(197, 160, 89, 0.08);
+            border: 1px solid rgba(197, 160, 89, 0.25);
+            padding: 4px 8px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .link-pill:hover {
+            background-color: rgba(197, 160, 89, 0.18);
+            border-color: var(--color-accent);
+        }
+
+        .link-pill-slug {
+            font-family: monospace;
+            font-size: 0.74rem;
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .link-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--color-accent);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .link-btn:hover {
+            color: var(--color-primary);
+            background-color: rgba(15, 44, 89, 0.1);
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(0);
+            background-color: var(--color-primary);
+            color: var(--color-white);
+            padding: 12px 28px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            box-shadow: 0 10px 30px rgba(15, 44, 89, 0.25);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .toast.hidden {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateX(-50%) translateY(20px);
+        }
+
+        /* Dress guide image manager */
+        .dress-guide-manager {
+            background: linear-gradient(135deg, #f7faff 0%, #e7f0fb 100%);
+            border: 1px solid #bfd1e7;
+            border-radius: 12px;
+            padding: 26px;
+            margin-bottom: 28px;
+            box-shadow: 0 8px 24px rgba(15, 44, 89, 0.08);
+        }
+
+        .dress-guide-manager h2 {
+            color: #12345d;
+            font: 400 1.7rem 'Cormorant Garamond', serif;
+            margin-bottom: 5px;
+        }
+
+        .dress-guide-manager > p {
+            color: #536b88;
+            font-size: 0.85rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .dress-guide-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 16px;
+        }
+
+        .dress-guide-editor {
+            min-width: 0;
+            padding: 14px;
+            border: 1px solid #d1deed;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .dress-guide-editor label {
+            display: block;
+            color: #183a63;
+            font-size: 0.78rem;
+            font-weight: 600;
+            margin-bottom: 9px;
+        }
+
+        .dress-guide-preview {
+            display: grid;
+            place-items: center;
+            height: 130px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            border: 1px dashed #9fb6d2;
+            border-radius: 7px;
+            background: linear-gradient(145deg, #dce9f8, #f5f8fc);
+            color: #6d83a0;
+            font-size: 0.75rem;
+            text-align: center;
+        }
+
+        .dress-guide-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #e7eef8;
+        }
+
+        .dress-guide-editor input[type="url"] {
+            width: 100%;
+            padding: 9px 10px;
+            border: 1px solid #c7d5e6;
+            border-radius: 6px;
+            outline: none;
+            color: #1c2b42;
+            font-size: 0.75rem;
+        }
+
+        .dress-guide-editor input[type="file"] {
+            width: 100%;
+            color: #536b88;
+            font-size: 0.72rem;
+        }
+
+        .dress-guide-editor input:focus { border-color: #5089cc; }
+
+        .dress-guide-role-select {
+            width: 100%;
+            max-width: 440px;
+            margin-bottom: 16px;
+            padding: 11px 12px;
+            border: 1px solid #c7d5e6;
+            border-radius: 6px;
+            background: white;
+            color: #183a63;
+            font: inherit;
+        }
+
+        .dress-guide-editor .dress-guide-clear {
+            margin-top: 8px;
+            padding: 5px 9px;
+            border: 1px solid #b8c9dc;
+            border-radius: 5px;
+            background: white;
+            color: #4b6078;
+            cursor: pointer;
+            font-size: 0.7rem;
+        }
+
+        @media (max-width: 900px) {
+            .dress-guide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        @media (max-width: 600px) {
+            .dress-guide-manager { padding: 18px; }
+            .dress-guide-grid { grid-template-columns: 1fr; }
+        }
+
+        /* Mobile layout */
+        @media (max-width: 900px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+                padding: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .controls-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+
+            .filter-group {
+                overflow-x: auto;
+                padding-bottom: 5px;
+            }
+        }
+
+        /* Modal Style */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(5, 15, 30, 0.65);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .modal.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .modal-content {
+            background-color: var(--color-white);
+            border-radius: 12px;
+            padding: 30px;
+            width: 90%;
+            max-width: 450px;
+            border: 1px solid var(--color-accent-light);
+            box-shadow: 0 10px 30px rgba(15, 44, 89, 0.2);
+            animation: modal-zoom 0.3s ease;
+        }
+
+        @keyframes modal-zoom {
+            from {
+                transform: scale(0.9);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-header h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: var(--color-primary);
+            font-size: 1.8rem;
+            font-weight: 400;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: var(--color-text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--color-danger);
+        }
+
+        .form-group-modal {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group-modal label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group-modal input {
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--color-accent-light);
+            font-size: 0.9rem;
+            outline: none;
+            color: var(--color-text-main);
+            transition: all 0.3s ease;
+        }
+
+        .form-group-modal input:focus {
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.15);
+        }
+
+        .btn-block-modal {
+            display: block;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="header-title">
+            <h1>Lovely & Christian</h1>
+            <p>RSVP Management Dashboard</p>
+        </div>
+        <div class="header-actions">
+            <a href="https://weddingchristianlovely.netlify.app" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="text-decoration: none;">
+                <i data-lucide="globe"></i> View Website
+            </a>
+            <button class="btn btn-accent" id="btn-add-guest">
+                <i data-lucide="plus"></i> Add Guest
+            </button>
+            <button class="btn btn-outline" id="btn-sync" style="display: none;">
+                <i data-lucide="refresh-cw"></i> Refresh
+            </button>
+            <button class="btn btn-outline" id="btn-export">
+                <i data-lucide="download"></i> Export CSV
+            </button>
+            <button class="btn btn-danger" id="btn-reset">
+                <i data-lucide="trash-2"></i> Reset RSVPs
+            </button>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Stats Panel -->
+        <div class="stats-grid">
+            <!-- Total Invited -->
+            <div class="stat-card">
+                <div class="stat-icon stat-icon-total">
+                    <i data-lucide="users"></i>
+                </div>
+                <div class="stat-details">
+                    <h3 id="stat-total">0</h3>
+                    <p>Total Invited</p>
+                </div>
+            </div>
+
+            <!-- Attending -->
+            <div class="stat-card">
+                <div class="stat-icon stat-icon-attending">
+                    <i data-lucide="check-circle-2"></i>
+                </div>
+                <div class="stat-details">
+                    <h3 id="stat-attending">0</h3>
+                    <p>Attending</p>
+                </div>
+            </div>
+
+            <!-- Declined -->
+            <div class="stat-card">
+                <div class="stat-icon stat-icon-declined">
+                    <i data-lucide="x-circle"></i>
+                </div>
+                <div class="stat-details">
+                    <h3 id="stat-declined">0</h3>
+                    <p>Declined</p>
+                </div>
+            </div>
+
+            <!-- Pending -->
+            <div class="stat-card">
+                <div class="stat-icon stat-icon-pending">
+                    <i data-lucide="help-circle"></i>
+                </div>
+                <div class="stat-details">
+                    <h3 id="stat-pending">0</h3>
+                    <p>Pending</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls (Search & Filter) -->
+        <div class="controls-card">
+            <div class="search-box">
+                <i data-lucide="search"></i>
+                <input type="text" id="search-input" placeholder="Search guest name...">
+            </div>
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="attending">Attending</button>
+                <button class="filter-btn" data-filter="declined">Declined</button>
+                <button class="filter-btn" data-filter="pending">Pending</button>
+            </div>
+        </div>
+
+        <!-- Table Card -->
+        <div class="table-card">
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Guest Name</th>
+                            <th>Family / Group</th>
+                            <th>Status</th>
+                            <th>Submitted Date</th>
+                            <th>Invitation Link</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="guest-table-body">
+                        <!-- Guest rows injected dynamically by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Guest Modal -->
+    <div id="add-guest-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Guest</h2>
+                <button id="modal-close-btn" class="modal-close">&times;</button>
+            </div>
+            <form id="add-guest-form">
+                <div class="form-group-modal">
+                    <label for="new-first-name">First Name</label>
+                    <input type="text" id="new-first-name" required placeholder="e.g. Juan">
+                </div>
+                <div class="form-group-modal">
+                    <label for="new-last-name">Last Name (Family Name)</label>
+                    <input type="text" id="new-last-name" required placeholder="e.g. Cruz">
+                </div>
+                <div class="form-group-modal">
+                    <label for="new-group">Family / Group (Optional)</label>
+                    <input type="text" id="new-group" placeholder="e.g. Cruz Family">
+                </div>
+                <button type="submit" class="btn btn-accent btn-block-modal" style="margin-top: 15px; width: 100%;">Save
+                    Guest</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Load Guests database and script -->
+    <script src="guests.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // Base Deployed Website URL for guest invitation links
+            const DEPLOYED_BASE_URL = "https://weddingchristianlovely.netlify.app";
+
+            // Cloud Sync Configuration (Copy-paste Apps Script Web App URL here)
+            const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwPIo6PqFNiWrSAVsCw9ln4xZZBOM_X9bzTxZhr0hN0csUViD5EzEwV2fqlQq6w4ZOH/exec";
+
+            // Elements
+            const tableBody = document.getElementById('guest-table-body');
+            const searchInput = document.getElementById('search-input');
+            const filterBtns = document.querySelectorAll('.filter-group button');
+            const toast = document.getElementById('toast');
+
+            // Stat Elements
+            const statTotal = document.getElementById('stat-total');
+            const statAttending = document.getElementById('stat-attending');
+            const statDeclined = document.getElementById('stat-declined');
+            const statPending = document.getElementById('stat-pending');
+
+            // Button actions
+            const exportBtn = document.getElementById('btn-export');
+            const resetBtn = document.getElementById('btn-reset');
+            const syncBtn = document.getElementById('btn-sync');
+            const btnAddGuest = document.getElementById('btn-add-guest');
+            const dressGuideGrid = document.getElementById('dress-guide-grid');
+            const dressGuideRoleSelect = document.getElementById('dress-guide-role-select');
+
+            const DRESS_GUIDE_GROUPS = [
+                ['guests', 'Guests'],
+                ['bridesmaids', 'Bridesmaids'],
+                ['groomsmen', 'Groomsmen'],
+                ['secondary-sponsors-women', 'Secondary Sponsors (Women)'],
+                ['secondary-sponsors-men', 'Secondary Sponsors (Men)'],
+                ['parents-of-bride', 'Parents of the Bride'],
+                ['parents-of-groom', 'Parents of the Groom'],
+                ['ninong-and-ninang', 'Ninong & Ninang']
+            ];
+
+            function getDressGuideImages() {
+                try { return JSON.parse(localStorage.getItem('wedding_dress_guide_images') || '{}'); }
+                catch (error) { return {}; }
+            }
+
+            function renderDressGuideManager() {
+                const images = getDressGuideImages();
+                const [key, label] = DRESS_GUIDE_GROUPS.find(([groupKey]) => groupKey === dressGuideRoleSelect.value) || DRESS_GUIDE_GROUPS[0];
+                dressGuideGrid.innerHTML = '';
+                const editor = document.createElement('div');
+                editor.className = 'dress-guide-editor';
+                editor.innerHTML = `
+                    <label for="dress-guide-url-${key}">${label}</label>
+                    <div class="dress-guide-preview" id="dress-guide-preview-${key}">Image preview</div>
+                    <input type="url" id="dress-guide-url-${key}" placeholder="Paste image URL" aria-label="Image URL for ${label}">
+                    <input type="file" id="dress-guide-file-${key}" accept="image/*" aria-label="Choose image for ${label}" style="margin-top:8px">
+                    <button type="button" class="dress-guide-clear" data-clear-dress-guide="${key}">Clear image</button>`;
+                dressGuideGrid.appendChild(editor);
+
+                const urlInput = editor.querySelector(`#dress-guide-url-${key}`);
+                const fileInput = editor.querySelector(`#dress-guide-file-${key}`);
+                const preview = editor.querySelector(`#dress-guide-preview-${key}`);
+                const showPreview = source => {
+                    preview.innerHTML = '';
+                    if (!source) { preview.textContent = 'Image preview'; return; }
+                    const image = new Image();
+                    image.alt = `${label} dress guide preview`;
+                    image.onload = () => { preview.replaceChildren(image); };
+                    image.onerror = () => { preview.textContent = 'Could not load image'; };
+                    image.src = source;
+                };
+                urlInput.value = images[key] || '';
+                showPreview(images[key] || '');
+
+                urlInput.addEventListener('change', () => {
+                    const updated = getDressGuideImages();
+                    if (urlInput.value.trim()) updated[key] = urlInput.value.trim();
+                    else delete updated[key];
+                    try {
+                        localStorage.setItem('wedding_dress_guide_images', JSON.stringify(updated));
+                        fileInput.value = '';
+                        showPreview(updated[key] || '');
+                        showToast(`${label} image saved in this browser.`);
+                    } catch (error) { showToast('Could not save image. Try a smaller image or an image URL.'); }
+                });
+
+                fileInput.addEventListener('change', () => {
+                    const file = fileInput.files && fileInput.files[0];
+                    if (!file) return;
+                    if (!file.type.startsWith('image/')) { showToast('Please choose an image file.'); return; }
+                    const reader = new FileReader();
+                    reader.onload = () => {
+                        const source = new Image();
+                        source.onload = () => {
+                            const canvas = document.createElement('canvas');
+                            const scale = Math.min(1, 1200 / Math.max(source.width, source.height));
+                            canvas.width = Math.round(source.width * scale);
+                            canvas.height = Math.round(source.height * scale);
+                            canvas.getContext('2d').drawImage(source, 0, 0, canvas.width, canvas.height);
+                            const compressed = canvas.toDataURL('image/jpeg', 0.8);
+                            const updated = getDressGuideImages();
+                            updated[key] = compressed;
+                            try {
+                                localStorage.setItem('wedding_dress_guide_images', JSON.stringify(updated));
+                                urlInput.value = '';
+                                showPreview(compressed);
+                                showToast(`${label} image saved in this browser.`);
+                            } catch (error) { showToast('Browser storage is full. Use a smaller image or an image URL.'); }
+                        };
+                        source.onerror = () => showToast('Could not read that image.');
+                        source.src = reader.result;
+                    };
+                    reader.readAsDataURL(file);
+                });
+            }
+
+            // Modal Elements
+            const addGuestModal = document.getElementById('add-guest-modal');
+            const modalCloseBtn = document.getElementById('modal-close-btn');
+            const addGuestForm = document.getElementById('add-guest-form');
+
+            let currentFilter = 'all';
+            let searchQuery = '';
+
+            // Helper to merge GUEST_DATABASE with custom guests created dynamically
+            function getMergedGuestDatabase() {
+                let customGuests = {};
+                let removedSlugs = [];
+                try {
+                    customGuests = JSON.parse(localStorage.getItem('wedding_custom_guests') || '{}');
+                } catch (e) {
+                    console.error("Error reading custom guests", e);
+                }
+                try {
+                    removedSlugs = JSON.parse(localStorage.getItem('wedding_removed_guests') || '[]');
+                } catch (e) {
+                    console.error("Error reading removed guests", e);
+                }
+                const guests = typeof GUEST_DATABASE !== 'undefined' ? { ...GUEST_DATABASE, ...customGuests } : customGuests;
+                removedSlugs.forEach(slug => delete guests[slug]);
+                return guests;
+            }
+
+            async function removeGuest(slug, name) {
+                let cloudDeleteSupported = false;
+                if (GOOGLE_SCRIPT_URL) {
+                    try {
+                        const capabilityUrl = `${GOOGLE_SCRIPT_URL}?action=capabilities&_=${Date.now()}`;
+                        const response = await fetch(capabilityUrl, { cache: 'no-store' });
+                        const capabilities = await response.json();
+                        cloudDeleteSupported = capabilities && capabilities.supportsDelete === true;
+                    } catch (error) {
+                        console.warn('Could not check Google Sheets delete support.', error);
+                    }
+                }
+
+                const cloudNotice = cloudDeleteSupported
+                    ? ' Their RSVP will also be deleted from the shared Google Sheet.'
+                    : ' The shared Google Sheets response can only be deleted after the latest Apps Script is deployed.';
+                const confirmed = confirm(`Remove ${name} from this dashboard? Their local RSVP will be cleared.${cloudNotice}`);
+                if (!confirmed) return;
+
+                let customGuests = {};
+                let removedSlugs = [];
+                const rsvps = getRSVPs();
+                try {
+                    customGuests = JSON.parse(localStorage.getItem('wedding_custom_guests') || '{}');
+                    removedSlugs = JSON.parse(localStorage.getItem('wedding_removed_guests') || '[]');
+                } catch (e) {
+                    console.error("Error loading guest data for removal", e);
+                }
+
+                delete customGuests[slug];
+                delete rsvps[slug];
+                if (!removedSlugs.includes(slug)) removedSlugs.push(slug);
+                localStorage.setItem('wedding_custom_guests', JSON.stringify(customGuests));
+                localStorage.setItem('wedding_removed_guests', JSON.stringify(removedSlugs));
+                localStorage.setItem('wedding_rsvps', JSON.stringify(rsvps));
+                renderDashboard();
+
+                if (cloudDeleteSupported) {
+                    fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                        body: JSON.stringify({ action: 'delete', guestId: slug, name: name })
+                    }).catch(error => console.error('Could not delete this guest RSVP from Google Sheets:', error));
+                    showToast(`Removed ${name}. Shared RSVP deletion was requested.`);
+                } else {
+                    showToast(`Removed ${name} from this browser. Deploy the updated Apps Script to clear the shared response.`);
+                }
+            }
+
+            // Fetch responses from shared LocalStorage
+            function getRSVPs() {
+                return JSON.parse(localStorage.getItem('wedding_rsvps') || '{}');
+            }
+
+            // Save overrides to LocalStorage
+            function saveRSVP(slug, status, name) {
+                const rsvps = getRSVPs();
+                const nowIso = new Date().toISOString();
+
+                if (status === 'pending') {
+                    delete rsvps[slug];
+                } else {
+                    rsvps[slug] = {
+                        name: name,
+                        attendance: status,
+                        date: nowIso
+                    };
+                }
+                localStorage.setItem('wedding_rsvps', JSON.stringify(rsvps));
+                renderDashboard();
+                showToast(`RSVP status updated for ${name}`);
+
+                // Sync the override to Google Sheets if configured
+                if (GOOGLE_SCRIPT_URL && status !== 'pending') {
+                    fetch(GOOGLE_SCRIPT_URL, {
+                        method: 'POST',
+                        mode: 'no-cors',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ guestId: slug, name: name, attendance: status, date: nowIso })
+                    }).catch(err => console.error("Error pushing override to Google Sheets:", err));
+                }
+            }
+
+            // Render calculations & rows
+            function renderDashboard() {
+                const rsvps = getRSVPs();
+                const guestDb = getMergedGuestDatabase();
+                const guests = Object.entries(guestDb);
+
+                let totalCount = guests.length;
+                let attendingCount = 0;
+                let declinedCount = 0;
+                let pendingCount = 0;
+
+                // Calculate stats
+                guests.forEach(([slug, guest]) => {
+                    const response = rsvps[slug];
+                    if (response) {
+                        if (response.attendance === 'accepts') attendingCount++;
+                        else if (response.attendance === 'declines') declinedCount++;
+                    } else {
+                        pendingCount++;
+                    }
+                });
+
+                // Update summary dashboard texts
+                statTotal.innerText = totalCount;
+                statAttending.innerText = attendingCount;
+                statDeclined.innerText = declinedCount;
+                statPending.innerText = pendingCount;
+
+                // Build table rows
+                tableBody.innerHTML = '';
+                let matchCount = 0;
+
+                // Sort guests by display name
+                const sortedGuests = guests.sort((a, b) => a[1].name.localeCompare(b[1].name));
+
+                sortedGuests.forEach(([slug, guest]) => {
+                    const response = rsvps[slug];
+                    let status = 'pending';
+                    let rawStatusText = 'Pending';
+                    let dateStr = '-';
+
+                    if (response) {
+                        status = response.attendance === 'accepts' ? 'attending' : 'declined';
+                        rawStatusText = response.attendance === 'accepts' ? 'Joyfully Accepts' : 'Regretfully Declines';
+                        dateStr = new Date(response.date).toLocaleString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                    }
+
+                    // Apply filters
+                    const matchesFilter = (currentFilter === 'all') || (currentFilter === status);
+                    const matchesSearch = guest.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                        guest.group.toLowerCase().includes(searchQuery.toLowerCase());
+
+                    if (matchesFilter && matchesSearch) {
+                        matchCount++;
+                        const row = document.createElement('tr');
+
+                        // Guest Name
+                        const nameTd = document.createElement('td');
+                        nameTd.innerHTML = `<strong>${guest.name}</strong>`;
+
+                        // Family / Group
+                        const groupTd = document.createElement('td');
+                        groupTd.innerText = guest.group;
+
+                        // Status Badge
+                        const statusTd = document.createElement('td');
+                        let badgeClass = 'badge-pending';
+                        let badgeIcon = 'help-circle';
+                        if (status === 'attending') { badgeClass = 'badge-attending'; badgeIcon = 'check'; }
+                        else if (status === 'declined') { badgeClass = 'badge-declined'; badgeIcon = 'x'; }
+                        statusTd.innerHTML = `<span class="badge ${badgeClass}"><i data-lucide="${badgeIcon}" style="width:12px; height:12px;"></i> ${rawStatusText}</span>`;
+
+                        // Submitted Date
+                        const dateTd = document.createElement('td');
+                        dateTd.className = 'date-col';
+                        dateTd.innerText = dateStr;
+
+                        // Invitation Link URL Cell
+                        const linkTd = document.createElement('td');
+                        const url = `${DEPLOYED_BASE_URL}/?g=${encodeURIComponent(slug)}&name=${encodeURIComponent(guest.name)}`;
+                        linkTd.className = 'link-cell';
+                        linkTd.innerHTML = `
+                            <div class="link-pill" title="Click to copy full invitation link: ${url}">
+                                <span class="link-pill-slug">?g=${slug}</span>
+                                <button type="button" class="link-btn copy-btn" title="Copy full link">
+                                    <i data-lucide="copy" style="width:13px;height:13px;"></i>
+                                </button>
+                                <a href="${url}" target="_blank" rel="noopener noreferrer" class="link-btn" title="Open preview in new tab">
+                                    <i data-lucide="external-link" style="width:13px;height:13px;"></i>
+                                </a>
+                            </div>
+                        `;
+                        linkTd.addEventListener('click', (e) => {
+                            if (e.target.closest('a')) return;
+                            navigator.clipboard.writeText(url).then(() => {
+                                showToast(`Copied link for ${guest.name}!`);
+                            }).catch(() => {
+                                const temp = document.createElement('input');
+                                temp.value = url;
+                                document.body.appendChild(temp);
+                                temp.select();
+                                document.execCommand('copy');
+                                temp.remove();
+                                showToast(`Copied link for ${guest.name}!`);
+                            });
+                        });
+
+                        // Manual Override Actions
+                        const actionsTd = document.createElement('td');
+                        actionsTd.className = 'actions-col';
+
+                        const markAttendingBtn = document.createElement('button');
+                        markAttendingBtn.className = 'btn btn-outline-dark btn-icon action-btn-green';
+                        markAttendingBtn.title = 'Mark Attending';
+                        markAttendingBtn.innerHTML = '<i data-lucide="check"></i>';
+                        markAttendingBtn.addEventListener('click', () => saveRSVP(slug, 'accepts', guest.name));
+
+                        const markDeclinedBtn = document.createElement('button');
+                        markDeclinedBtn.className = 'btn btn-outline-dark btn-icon action-btn-red';
+                        markDeclinedBtn.title = 'Mark Declined';
+                        markDeclinedBtn.innerHTML = '<i data-lucide="x"></i>';
+                        markDeclinedBtn.addEventListener('click', () => saveRSVP(slug, 'declines', guest.name));
+
+                        const markPendingBtn = document.createElement('button');
+                        markPendingBtn.className = 'btn btn-outline-dark btn-icon action-btn-gray';
+                        markPendingBtn.title = 'Mark Pending';
+                        markPendingBtn.innerHTML = '<i data-lucide="rotate-ccw"></i>';
+                        markPendingBtn.addEventListener('click', () => saveRSVP(slug, 'pending', guest.name));
+
+                        const removeGuestBtn = document.createElement('button');
+                        removeGuestBtn.className = 'btn btn-outline-dark btn-icon action-btn-red';
+                        removeGuestBtn.title = `Remove ${guest.name}`;
+                        removeGuestBtn.setAttribute('aria-label', `Remove ${guest.name}`);
+                        removeGuestBtn.innerHTML = '<i data-lucide="trash-2"></i>';
+                        removeGuestBtn.addEventListener('click', () => removeGuest(slug, guest.name));
+
+                        actionsTd.appendChild(markAttendingBtn);
+                        actionsTd.appendChild(markDeclinedBtn);
+                        actionsTd.appendChild(markPendingBtn);
+                        actionsTd.appendChild(removeGuestBtn);
+
+                        row.appendChild(nameTd);
+                        row.appendChild(groupTd);
+                        row.appendChild(statusTd);
+                        row.appendChild(dateTd);
+                        row.appendChild(linkTd);
+                        row.appendChild(actionsTd);
+
+                        tableBody.appendChild(row);
+                    }
+                });
+
+                if (matchCount === 0) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `<td colspan="6" style="text-align: center; color: var(--color-text-muted); padding: 40px;">No guests found matching the criteria.</td>`;
+                    tableBody.appendChild(row);
+                }
+
+                lucide.createIcons();
+            }
+
+            // Sync with Google Sheets cloud database
+            function syncGoogleSheetsRSVPs() {
+                if (!GOOGLE_SCRIPT_URL) return;
+
+                showToast("Syncing responses from cloud...");
+
+                fetch(GOOGLE_SCRIPT_URL)
+                    .then(response => {
+                        if (!response.ok) throw new Error("Network response was not ok");
+                        return response.json();
+                    })
+                    .then(data => {
+                        if (Array.isArray(data)) {
+                            const rsvps = getRSVPs();
+                            const guestDb = getMergedGuestDatabase();
+                            const slugMap = {};
+
+                            // Map existing display names to their slugs
+                            Object.entries(guestDb).forEach(([slug, guest]) => {
+                                slugMap[guest.name.toLowerCase().trim()] = slug;
+                            });
+
+                            let updated = false;
+                            let customGuests = JSON.parse(localStorage.getItem('wedding_custom_guests') || '{}');
+                            const removedSlugs = new Set(JSON.parse(localStorage.getItem('wedding_removed_guests') || '[]'));
+                            const cloudGuestSlugs = new Set();
+
+                            data.forEach(row => {
+                                const guestName = row.name;
+                                const attendance = row.attendance;
+                                const date = row.date || new Date().toISOString();
+
+                                const nameKey = guestName.toLowerCase().trim();
+                                let slug = (row.guestId && guestDb[row.guestId]) ? row.guestId : slugMap[nameKey];
+
+                                if (!slug) {
+                                    // Generate new slug for unrecognized names (self-registration)
+                                    slug = row.guestId || guestName.toLowerCase()
+                                        .replace(/[^a-z0-9\s-]/g, '')
+                                        .replace(/\s+/g, '-')
+                                        .replace(/^-+|-+$/g, '');
+
+                                    if (removedSlugs.has(slug)) return;
+
+                                    // Add to custom guests
+                                    if (!customGuests[slug] && !guestDb[slug]) {
+                                        customGuests[slug] = {
+                                            name: guestName,
+                                            group: "Guests",
+                                            lastName: "",
+                                            firstName: guestName
+                                        };
+                                        updated = true;
+                                    }
+                                }
+
+                                if (removedSlugs.has(slug)) {
+                                    if (rsvps[slug]) {
+                                        delete rsvps[slug];
+                                        updated = true;
+                                    }
+                                    return;
+                                }
+
+                                cloudGuestSlugs.add(slug);
+
+                                // Only update local storage RSVP if it has changed
+                                if (!rsvps[slug] || rsvps[slug].attendance !== attendance) {
+                                    rsvps[slug] = {
+                                        name: guestName,
+                                        attendance: attendance,
+                                        date: date
+                                    };
+                                    updated = true;
+                                }
+                            });
+
+                            // The cloud sheet is authoritative when syncing: clear local RSVP caches
+                            // for known guests whose responses have been deleted from the sheet.
+                            Object.keys(rsvps).forEach(slug => {
+                                if (guestDb[slug] && !cloudGuestSlugs.has(slug)) {
+                                    delete rsvps[slug];
+                                    updated = true;
+                                }
+                            });
+
+                            if (updated) {
+                                localStorage.setItem('wedding_custom_guests', JSON.stringify(customGuests));
+                                localStorage.setItem('wedding_rsvps', JSON.stringify(rsvps));
+                                renderDashboard();
+                                showToast("Dashboard synced with Google Sheets!");
+                            } else {
+                                showToast("Dashboard is up to date.");
+                            }
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Error syncing Google Sheets:", error);
+                        showToast("Failed to sync with Google Sheets.");
+                    });
+            }
+
+            // Search Event listener
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value;
+                renderDashboard();
+            });
+
+            // Filter button listeners
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilter = btn.getAttribute('data-filter');
+                    renderDashboard();
+                });
+            });
+
+            // Modal Toggles
+            if (btnAddGuest) {
+                btnAddGuest.addEventListener('click', () => {
+                    addGuestModal.classList.remove('hidden');
+                });
+            }
+
+            if (modalCloseBtn) {
+                modalCloseBtn.addEventListener('click', () => {
+                    addGuestModal.classList.add('hidden');
+                });
+            }
+
+            // Close modal by clicking background
+            window.addEventListener('click', (e) => {
+                if (e.target === addGuestModal) {
+                    addGuestModal.classList.add('hidden');
+                }
+            });
+
+            // Form Submit for Add Guest
+            if (addGuestForm) {
+                addGuestForm.addEventListener('submit', (e) => {
+                    e.preventDefault();
+
+                    const first = document.getElementById('new-first-name').value.trim();
+                    const last = document.getElementById('new-last-name').value.trim();
+                    let group = document.getElementById('new-group').value.trim();
+
+                    if (!first || !last) return;
+
+                    // Format name nicely
+                    const formatPart = (str) => str.split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase()).join(' ');
+                    const firstName = formatPart(first);
+                    const lastName = formatPart(last);
+                    const displayName = `${firstName} ${lastName}`;
+
+                    if (!group) {
+                        group = `${lastName} Family`;
+                    }
+
+                    // Generate unique slug
+                    const slugBase = displayName.toLowerCase()
+                        .replace(/[^a-z0-9\s-]/g, '')
+                        .replace(/\s+/g, '-')
+                        .replace(/^-+|-+$/g, '');
+
+                    const guestDb = getMergedGuestDatabase();
+                    let slug = slugBase;
+                    let counter = 1;
+                    while (guestDb[slug]) {
+                        slug = `${slugBase}-${counter}`;
+                        counter++;
+                    }
+
+                    // Save guest to localStorage
+                    const customGuests = JSON.parse(localStorage.getItem('wedding_custom_guests') || '{}');
+                    customGuests[slug] = {
+                        name: displayName,
+                        group: group,
+                        lastName: lastName,
+                        firstName: firstName
+                    };
+                    localStorage.setItem('wedding_custom_guests', JSON.stringify(customGuests));
+                    try {
+                        const removedSlugs = JSON.parse(localStorage.getItem('wedding_removed_guests') || '[]')
+                            .filter(removedSlug => removedSlug !== slug);
+                        localStorage.setItem('wedding_removed_guests', JSON.stringify(removedSlugs));
+                    } catch (e) {
+                        console.error("Error updating removed guest list", e);
+                    }
+
+                    // Reset form and close modal
+                    addGuestForm.reset();
+                    addGuestModal.classList.add('hidden');
+
+                    renderDashboard();
+                    showToast(`Added new guest: ${displayName}`);
+                });
+            }
+
+            // CSV Export Handler
+            exportBtn.addEventListener('click', () => {
+                const rsvps = getRSVPs();
+                const guestDb = getMergedGuestDatabase();
+                const guests = Object.entries(guestDb);
+
+                let csvContent = "data:text/csv;charset=utf-8,";
+                csvContent += "Guest Name,Family / Group,Status,Date Submitted,Personal Invitation Link\n";
+
+                guests.forEach(([slug, guest]) => {
+                    const response = rsvps[slug];
+                    let status = "Pending";
+                    let dateStr = "";
+                    if (response) {
+                        status = response.attendance === 'accepts' ? "Attending" : "Declined";
+                        dateStr = new Date(response.date).toLocaleString().replace(/,/g, '');
+                    }
+                    const fullLink = `${DEPLOYED_BASE_URL}/?g=${encodeURIComponent(slug)}&name=${encodeURIComponent(guest.name)}`;
+                    csvContent += `"${guest.name}","${guest.group}","${status}","${dateStr}","${fullLink}"\n`;
+                });
+
+                const encodedUri = encodeURI(csvContent);
+                const downloadLink = document.createElement("a");
+                downloadLink.setAttribute("href", encodedUri);
+                downloadLink.setAttribute("download", "lovely_and_christian_rsvps.csv");
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+                showToast("CSV Exported successfully!");
+            });
+
+            // Reset RSVPs Handler
+            resetBtn.addEventListener('click', () => {
+                const confirmReset = confirm("Are you sure you want to clear ALL guest responses? This action cannot be undone.");
+                if (confirmReset) {
+                    localStorage.removeItem('wedding_rsvps');
+                    renderDashboard();
+                    showToast("All responses have been cleared.");
+                    if (GOOGLE_SCRIPT_URL) {
+                        alert("Note: Responses have been cleared locally. You will need to manually delete rows in your Google Sheet to clear them from the cloud backend.");
+                    }
+                }
+            });
+
+            // Toast helper
+            let toastTimeout;
+            function showToast(message) {
+                toast.innerHTML = `<i data-lucide="info" style="width:16px; height:16px;"></i> ${message}`;
+                toast.classList.remove('hidden');
+                lucide.createIcons();
+
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.add('hidden');
+                }, 3000);
+            }
+
+            // Google Sheets Sync Trigger
+            if (syncBtn) {
+                if (GOOGLE_SCRIPT_URL) {
+                    syncBtn.style.display = 'inline-flex';
+                    syncBtn.addEventListener('click', syncGoogleSheetsRSVPs);
+                    // Perform initial sync on load
+                    syncGoogleSheetsRSVPs();
+                } else {
+                    syncBtn.style.display = 'none';
+                }
+            }
+
+            // Initial render
+            renderDashboard();
+        });
+    </script>
+</body>
+
+</html>
